@@ -1,10 +1,6 @@
 ## PHP Pdf reader
 
-Example download pdf:
-
-```bash
-wget --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3"  https://arxiv.org/pdf/2303.12712.pdf
-```
+PHP Extension for reading pdf document written in Rust.
 
 ## Build
 
@@ -43,6 +39,12 @@ extension=/opt/homebrew/lib/php/pecl/20210902/libphp_pdf.so
 And now you are ready to go.
 
 ## Usage
+
+Download example pdf document:
+
+```bash
+wget --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3"  https://arxiv.org/pdf/2303.12712.pdf
+```
 
 Read all document page texts.
 
