@@ -17,6 +17,14 @@ Or you can use this bash script.
 bash build.sh
 ```
 
+Then you can use the debug version using this command.
+
+```bash
+php -d "extension=target/debug/libphp_pdf.so" test.php
+```
+
+### Release build
+
 To build production release.
 
 ```bash
