@@ -54,6 +54,13 @@ Download example pdf document:
 wget --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3"  https://arxiv.org/pdf/2303.12712.pdf
 ```
 
+Get page size:
+
+```php
+$size = php_pdf_get_page_size('2303.12712.pdf');
+echo $size;
+```
+
 Read all document page texts.
 
 ```php
@@ -70,3 +77,7 @@ Read document page by the page number.
 $text = php_pdf_read_page('2303.12712.pdf', 100);
 echo $text;
 ```
+
+## LICENSE
+
+MIT

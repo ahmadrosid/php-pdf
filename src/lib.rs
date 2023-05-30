@@ -10,7 +10,7 @@ use phper::{
 fn php_pdf_read_all(arguments: &mut [ZVal]) -> phper::Result<ZArray> {
     let path = arguments[0].expect_z_str()?.to_str()?;
     let doc: Result<Document, lopdf::Error> = Document::load(path);
-    return match doc {
+    match doc {
         Ok(document) => {
             let pages = document.get_pages();
             let mut texts = ZArray::new();
@@ -26,14 +26,14 @@ fn php_pdf_read_all(arguments: &mut [ZVal]) -> phper::Result<ZArray> {
             Ok(texts)
         }
         Err(err) => Err(phper::Error::Boxed(err.into())),
-    };
+    }
 }
 
 fn php_pdf_read_page(arguments: &mut [ZVal]) -> phper::Result<String> {
     let path = arguments[0].expect_z_str()?.to_str()?;
     let page = arguments[1].expect_long()?;
     let doc = Document::load(path);
-    return match doc {
+    match doc {
         Ok(document) => {
             let pages = document.get_pages();
             if page >= pages.len() as i64 {
@@ -43,7 +43,19 @@ fn php_pdf_read_page(arguments: &mut [ZVal]) -> phper::Result<String> {
             Ok(text.unwrap().to_string())
         }
         Err(err) => Err(phper::Error::Boxed(err.into())),
-    };
+    }
+}
+
+fn php_pdf_get_page_size(arguments: &mut [ZVal]) -> phper::Result<i64> {
+    let path = arguments[0].expect_z_str()?.to_str()?;
+    let doc = Document::load(path);
+    match doc {
+        Ok(document) => {
+            let pages = document.get_pages();
+            Ok(pages.len().try_into().unwrap())
+        }
+        Err(err) => Err(phper::Error::Boxed(err.into())),
+    }
 }
 
 #[php_get_module]
@@ -60,6 +72,10 @@ pub fn get_module() -> Module {
 
     module
         .add_function("php_pdf_read_page", php_pdf_read_page)
+        .argument(Argument::by_val("path"));
+
+    module
+        .add_function("php_pdf_get_page_size", php_pdf_get_page_size)
         .argument(Argument::by_val("path"));
 
     module
