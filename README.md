@@ -91,7 +91,3 @@ Read document page by the page number.
 $text = php_pdf_read_page('2303.12712.pdf', 100);
 echo $text;
 ```
-
-## LICENSE
-
-MIT
