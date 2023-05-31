@@ -1,12 +1,15 @@
 <?php
 
-$size = php_pdf_get_page_size('2303.12712.pdf');
-echo $size;
+// $pdf_path = '2303.12712.pdf';
+$pdf_path = "Ahmad Rosid Resume.pdf";
 
-$text = php_pdf_read_page('2303.12712.pdf', 100);
+// $size = php_pdf_get_page_size($pdf_path);
+// echo $size;
+
+// $texts = php_pdf_read_all($pdf_path);
+// foreach ($texts as $text) {
+//     echo $text;
+// }
+
+$text = php_pdf_read_page($pdf_path, 2);
 echo $text;
-
-$texts = php_pdf_read_all('2303.12712.pdf');
-foreach ($texts as $text) {
-    echo $text;
-}

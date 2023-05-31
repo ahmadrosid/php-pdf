@@ -10,5 +10,5 @@ license = "MIT"
 crate-type = ["lib", "cdylib"]
 
 [dependencies]
-lopdf = { version = "0.31.0", features = ["pom", "pom_parser"] }
+mupdf = "0.4.2"
 phper = "0.12.0"

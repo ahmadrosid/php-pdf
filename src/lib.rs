@@ -1,4 +1,4 @@
-use lopdf::Document;
+use mupdf::pdf::PdfDocument;
 use phper::{
     arrays::{InsertKey, ZArray},
     functions::Argument,
@@ -9,53 +9,53 @@ use phper::{
 
 fn php_pdf_read_all(arguments: &mut [ZVal]) -> phper::Result<ZArray> {
     let path = arguments[0].expect_z_str()?.to_str()?;
-    let doc: Result<Document, lopdf::Error> = Document::load(path);
-    match doc {
-        Ok(document) => {
-            let pages = document.get_pages();
-            let mut texts = ZArray::new();
+    let mut texts = ZArray::new();
 
-            for (i, _) in pages.iter().enumerate() {
-                let page_number = (i + 1) as u32;
-                let text = document.extract_text(&[page_number]);
-                texts.insert(
-                    InsertKey::Index(page_number as u64),
-                    text.unwrap_or_default(),
-                );
-            }
-            Ok(texts)
-        }
-        Err(err) => Err(phper::Error::Boxed(err.into())),
+    let document = PdfDocument::open(path).map_err(|err| phper::Error::Boxed(err.into()))?;
+    let count = document
+        .page_count()
+        .map_err(|err| phper::Error::Boxed(err.into()))?;
+
+    for i in 0..count {
+        let page = document
+            .load_page(i)
+            .map_err(|err| phper::Error::Boxed(err.into()))?;
+        let text = page
+            .to_text()
+            .map_err(|err| phper::Error::Boxed(err.into()))?;
+        texts.insert(InsertKey::Index(i as u64), text);
     }
+
+    Ok(texts)
 }
 
 fn php_pdf_read_page(arguments: &mut [ZVal]) -> phper::Result<String> {
     let path = arguments[0].expect_z_str()?.to_str()?;
-    let page = arguments[1].expect_long()?;
-    let doc = Document::load(path);
-    match doc {
-        Ok(document) => {
-            let pages = document.get_pages();
-            if page >= pages.len() as i64 {
-                return Err(phper::Error::Boxed("invalid page number".into()));
-            }
-            let text = document.extract_text(&[page as u32]);
-            Ok(text.unwrap().to_string())
-        }
-        Err(err) => Err(phper::Error::Boxed(err.into())),
+    let page_number = arguments[1].expect_long()?;
+    let document = PdfDocument::open(path).map_err(|err| phper::Error::Boxed(err.into()))?;
+    let count = document
+        .page_count()
+        .map_err(|err| phper::Error::Boxed(err.into()))?;
+    if (page_number as i32) >= count {
+        return Err(phper::Error::Boxed("invalid page number".into()));
     }
+
+    let page = document
+        .load_page(page_number as i32)
+        .map_err(|err| phper::Error::Boxed(err.into()))?;
+    let text = page
+        .to_text()
+        .map_err(|err| phper::Error::Boxed(err.into()))?;
+    Ok(text.into())
 }
 
 fn php_pdf_get_page_size(arguments: &mut [ZVal]) -> phper::Result<i64> {
     let path = arguments[0].expect_z_str()?.to_str()?;
-    let doc = Document::load(path);
-    match doc {
-        Ok(document) => {
-            let pages = document.get_pages();
-            Ok(pages.len().try_into().unwrap())
-        }
-        Err(err) => Err(phper::Error::Boxed(err.into())),
-    }
+    let document = PdfDocument::open(path).map_err(|err| phper::Error::Boxed(err.into()))?;
+    let count = document
+        .page_count()
+        .map_err(|err| phper::Error::Boxed(err.into()))?;
+    Ok(count as i64)
 }
 
 #[php_get_module]
