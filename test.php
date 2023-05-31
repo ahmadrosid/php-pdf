@@ -11,5 +11,5 @@ $pdf_path = "Ahmad Rosid Resume.pdf";
 //     echo $text;
 // }
 
-$text = php_pdf_read_page($pdf_path, 2);
+$text = php_pdf_read_page($pdf_path, 1);
 echo $text;

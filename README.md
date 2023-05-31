@@ -1,8 +1,22 @@
 ## PHP Pdf reader
 
-PHP Extension for reading pdf document written in Rust.
+PHP Extension for reading pdf document written in Rust. This library using [mupdf-rs](https://github.com/messense/mupdf-rs).
 
 ## Build
+
+Before you build install this package on linux:
+
+```bash
+apt install libfontconfig1-dev
+```
+
+Or for other linux distribution:
+
+- Alpine Linux: `fontconfig-dev`
+- Arch Linux: `fontconfig`
+- Debian-based systems: `libfontconfig1-dev`
+- FreeBSD: `fontconfig`
+- Void Linux: `fontconfig-devel`
 
 Run this command to build debug version:
 
