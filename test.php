@@ -1,7 +1,7 @@
 <?php
 
-// $pdf_path = '2303.12712.pdf';
-$pdf_path = "Ahmad Rosid Resume.pdf";
+$pdf_path = '2303.12712.pdf';
+// $pdf_path = "Ahmad Rosid Resume.pdf";
 
 // $size = php_pdf_get_page_size($pdf_path);
 // echo $size;
