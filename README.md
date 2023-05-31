@@ -1,6 +1,6 @@
 ## PHP Pdf reader
 
-PHP Extension for reading pdf document written in Rust. This extension is using using [mupdf-rs](https://github.com/messense/mupdf-rs) to parsing the pdf file.
+PHP Extension for reading pdf document written in Rust. This extension is using [mupdf-rs](https://github.com/messense/mupdf-rs) to parsing the pdf file.
 
 ## Build
 
