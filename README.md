@@ -7,7 +7,7 @@ PHP Extension for reading pdf document written in Rust. This extension is using 
 Before you build install this package on linux:
 
 ```bash
-sudo apt install libfontconfig1-dev mupdf-tools gperf
+sudo apt install software-properties-common libfontconfig1-dev mupdf-tools gperf clang php8.1-dev build-essential autoconf
 ```
 
 Or for other linux distribution:
