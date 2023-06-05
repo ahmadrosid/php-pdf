@@ -46,7 +46,13 @@ cargo build --release
 cp target/release/libphp_pdf.dylib target/release/libphp_pdf.so
 ```
 
-Then copy the extension to your extension dir for example here is my directory extension `/opt/homebrew/lib/php/pecl/20210902`:
+Then copy the extension to your extension dir for example here is my directory extension `/opt/homebrew/lib/php/pecl/20210902`, you can find the extension directory by runnig this command.
+
+```bash
+php -i | grep extension_dir
+```
+
+Then copy to that extension directory:
 
 ```bash
 cp target/release/libphp_pdf.so /opt/homebrew/lib/php/pecl/20210902
