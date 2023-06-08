@@ -52,7 +52,7 @@ Then copy the extension to your extension dir for example here is my directory e
 php -i | grep extension_dir
 ```
 
-Then copy to that extension directory:
+Then copy to that extension directory, you can get the directory location by running this command `pecl config-get ext_dir`:
 
 ```bash
 cp target/release/libphp_pdf.so /opt/homebrew/lib/php/pecl/20210902
