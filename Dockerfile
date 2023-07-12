@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     clang \
     autoconf
 
-# sudo apt install software-properties-common libfontconfig1-dev mupdf-tools gperf clang php8.1-dev autoconf unzip
+# apt install software-properties-common libfontconfig1-dev mupdf-tools gperf clang php8.1-dev autoconf unzip
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 
@@ -31,7 +31,11 @@ RUN cargo build --release
 RUN mv /usr/src/php/ext/php-pdf/target/release/libphp_pdf.so $(pecl config-get ext_dir)/libphp_pdf.so
 RUN echo "extension=libphp_pdf.so" > /usr/local/etc/php/conf.d/php-pdf.ini
 RUN rm -rf /usr/src/php/ext/php-pdf/target
-RUN rm -rf /root/.rustup
-RUN rm -rf /root/.cargo
+
+RUN apt-get remove cargo -y
+RUN apt-get autoremove -y
+RUN apt-get remove build-essential curl git libfontconfig1-dev mupdf-tools unzip clang autoconf -y
+
+RUN php /usr/src/php/ext/php-pdf/test.php
 
 CMD ["php", "-a"]
