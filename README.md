@@ -18,14 +18,14 @@ Or for other linux distribution:
 - FreeBSD: `fontconfig`
 - Void Linux: `fontconfig-devel`
 
-Run this command to build debug version:
+Run this command to build debug version (this example for MacOS):
 
 ```bash
 cargo build
 cp target/debug/libphp_pdf.dylib target/debug/libphp_pdf.so
 ```
 
-Or you can use this bash script.
+Or you can use this bash script (MacOS).
 
 ```bash
 bash build.sh
@@ -43,13 +43,15 @@ To build production release.
 
 ```bash
 cargo build --release
-cp target/release/libphp_pdf.dylib target/release/libphp_pdf.so
+cp target/release/libphp_pdf.dylib target/release/libphp_pdf.so # Only for macos
 ```
 
 Then copy the extension to your extension dir for example here is my directory extension `/opt/homebrew/lib/php/pecl/20210902`, you can find the extension directory by runnig this command.
 
 ```bash
 php -i | grep extension_dir
+#or
+pecl config-get ext_dir
 ```
 
 Then copy to that extension directory, you can get the directory location by running this command `pecl config-get ext_dir`:
@@ -58,7 +60,8 @@ Then copy to that extension directory, you can get the directory location by run
 cp target/release/libphp_pdf.so /opt/homebrew/lib/php/pecl/20210902
 ```
 
-or 
+or
+
 ```bash
 cp target/release/libphp_pdf.so  $(pecl config-get ext_dir)/libphp_pdf.so
 ```
