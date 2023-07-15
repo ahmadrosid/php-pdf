@@ -11,6 +11,11 @@ RUN apt-get update && apt-get install -y \
     clang \
     autoconf
 
+RUN docker-php-ext-install zip
+
+# Get latest Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
 # apt install software-properties-common libfontconfig1-dev mupdf-tools gperf clang php8.1-dev autoconf unzip
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -38,4 +43,4 @@ RUN apt-get remove build-essential curl git libfontconfig1-dev mupdf-tools unzip
 
 RUN php /usr/src/php/ext/php-pdf/test.php
 
-CMD ["php", "-a"]
+ENTRYPOINT ["docker-entrypoint.sh"]
