@@ -58,6 +58,11 @@ Then copy to that extension directory, you can get the directory location by run
 cp target/release/libphp_pdf.so /opt/homebrew/lib/php/pecl/20210902
 ```
 
+or 
+```bash
+cp target/release/libphp_pdf.so  $(pecl config-get ext_dir)/libphp_pdf.so
+```
+
 Enable extension config ono `php.ini`:
 
 ```ini
