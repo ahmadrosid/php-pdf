@@ -1,3 +1,4 @@
 /target
 *.pdf
 .DS_Store
+libphp_pdf.so
