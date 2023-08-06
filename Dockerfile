@@ -30,7 +30,7 @@ WORKDIR /usr/src/php/ext/php-pdf
 
 RUN cargo build --release
 
-RUN mv /usr/src/php/ext/php-pdf/target/release/libphp_pdf.so $(pecl config-get ext_dir)/libphp_pdf.so
+RUN cp /usr/src/php/ext/php-pdf/target/release/libphp_pdf.so $(pecl config-get ext_dir)/libphp_pdf.so
 RUN echo "extension=libphp_pdf.so" > /usr/local/etc/php/conf.d/php-pdf.ini
 RUN rm -rf /usr/src/php/ext/php-pdf/target
 
@@ -41,5 +41,5 @@ RUN apt-get remove build-essential curl git libfontconfig1-dev mupdf-tools unzip
 RUN php /usr/src/php/ext/php-pdf/test.php
 
 # get the container id from docker ps
-# docker cp 1874713bde93:/usr/local/lib/php/extensions/no-debug-non-zts-20210902/libphp_pdf.so .
+# docker cp 1874713bde93:/usr/src/php/ext/php-pdf/target/release/libphp_pdf.so .
 # docker exec -it 1874713bde93 bash
