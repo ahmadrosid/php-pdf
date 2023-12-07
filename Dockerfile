@@ -15,8 +15,6 @@ RUN cargo chef prepare --recipe-path recipe.json
 # Build dependencies
 FROM rust:alpine3.18 as cacher
 WORKDIR /app
-RUN cargo install cargo-chef
-COPY --from=planner /app/recipe.json recipe.json
 
 RUN apt-get update \
     && apt-get install -y gnupg gosu curl ca-certificates zip unzip git supervisor sqlite3 libcap2-bin libpng-dev dnsutils \
@@ -34,6 +32,8 @@ RUN apt-get update \
     mupdf-tools \
     unzip \
     clang
+RUN cargo install cargo-chef
+COPY --from=planner /app/recipe.json recipe.json
 
 RUN cargo chef cook --release --recipe-path recipe.json
 COPY . .
