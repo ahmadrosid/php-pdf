@@ -8,7 +8,7 @@ RUN apt-get update \
     #&& echo "deb [signed-by=/usr/share/keyrings/ppa_ondrej_php.gpg] https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy main" > /etc/apt/sources.list.d/ppa_ondrej_php.list \
     # Ubuntu 20.04
     # && echo "deb [signed-by=/usr/share/keyrings/ppa_ondrej_php.gpg] https://ppa.launchpadcontent.net/ondrej/php/ubuntu focal main" > /etc/apt/sources.list.d/ppa_ondrej_php.list \
-    && apt-get install software-properties-common
+    && apt-get install software-properties-common \
     && add-apt-repository ppa:ondrej/php \
     && apt-get update \
     && apt-get install -y php8.2-cli php8.2-dev \
@@ -33,7 +33,7 @@ RUN apt-get update \
     #&& echo "deb [signed-by=/usr/share/keyrings/ppa_ondrej_php.gpg] https://ppa.launchpadcontent.net/ondrej/php/ubuntu jammy main" > /etc/apt/sources.list.d/ppa_ondrej_php.list \
     # Ubuntu 20.04
     # && echo "deb [signed-by=/usr/share/keyrings/ppa_ondrej_php.gpg] https://ppa.launchpadcontent.net/ondrej/php/ubuntu focal main" > /etc/apt/sources.list.d/ppa_ondrej_php.list \
-    && apt-get install software-properties-common
+    && apt-get install software-properties-common \
     && add-apt-repository ppa:ondrej/php \
     && apt-get update \
     && apt-get install -y php8.2-cli php8.2-dev \
