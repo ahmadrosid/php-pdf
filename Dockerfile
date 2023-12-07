@@ -20,6 +20,7 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y php8.2-cli php8.2-dev \
     libfontconfig1-dev \
+    build-essential \
     mupdf-tools \
     unzip \
     clang
