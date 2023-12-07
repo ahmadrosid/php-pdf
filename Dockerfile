@@ -18,8 +18,8 @@ RUN apt update \
 
 COPY . .
 RUN cargo build --release
-# RUN wget --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3"  https://arxiv.org/pdf/2303.12712.pdf
-# RUN php -d "extension=/app/target/release/libphp_pdf.so" test.php
+RUN wget --user-agent="Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.3) Gecko/2008092416 Firefox/3.0.3"  https://arxiv.org/pdf/2303.12712.pdf
+RUN php -d "extension=/app/target/release/libphp_pdf.so" test.php
 # RUN echo "extension=/app/target/release/libphp_pdf.so" > /etc/php/8.2/cli/conf.d/php-pdf.ini
 
 # Run into debian 11
