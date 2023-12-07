@@ -462,7 +462,7 @@ checksum = "68354c5c6bd36d73ff3feceb05efa59b6acb7626617f4962be322a825e61f79a"
 
 [[package]]
 name = "mupdf"
-version = "0.4.1"
+version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "14660d0f9bab7127acf203e5690b8dffc91b696e2db901d28ed35f76478fa967"
 dependencies = [
@@ -475,7 +475,7 @@ dependencies = [
 
 [[package]]
 name = "mupdf-sys"
-version = "0.4.1"
+version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a2a3d545b8917d0ed22faed09c1a0492d4e87a68c046fac8e0bffec1cf3428b3"
 dependencies = [
