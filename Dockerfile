@@ -1,5 +1,5 @@
 # Build dependencies
-FROM rust:alpine3.18 as builder
+FROM rust as builder
 WORKDIR /app
 RUN apt update \
     && apt install -y gnupg gosu curl ca-certificates zip unzip git supervisor sqlite3 libcap2-bin libpng-dev dnsutils \
