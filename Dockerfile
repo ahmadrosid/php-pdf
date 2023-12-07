@@ -25,4 +25,4 @@ RUN php -d "extension=/app/target/release/libphp_pdf.so" test.php
 # Run into debian 11
 FROM serversideup/php:8.2-fpm-nginx
 COPY --from=builder /app/target/release/libphp_pdf.so /app/libphp_pdf.so
-RUN echo "extension=/app/libphp_pdf.so" > /etc/php/8.1/cli/conf.d/php-pdf.ini
+RUN echo "extension=/app/libphp_pdf.so" > /etc/php/8.2/cli/conf.d/php-pdf.ini
